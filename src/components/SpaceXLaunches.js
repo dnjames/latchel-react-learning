@@ -15,7 +15,6 @@ function SpaceXLaunches() {
         axios.get('https://api.spacexdata.com/v3/launches').then(({data}) =>  setLaunches(data)).finally(setLaunchRetrieve(false));
       }
     });
-    console.log(launches);
     return (
           <div>
               <button className="nameSubmit" onClick={checkLaunches}>Check Launches</button>
@@ -27,7 +26,7 @@ function SpaceXLaunches() {
                     </tr>
                 </thead>
                 <tbody>
-                    {launches.map(launch => <ResultCard launch={launch} />)}
+                    {launches.map(launch => <ResultCard key={launch.flight_number + '-' + launch.launch_date_unix} launch={launch} />)}
                 </tbody>
               </table>
           </div>
